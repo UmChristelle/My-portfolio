@@ -1,3 +1,4 @@
+import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 export default function About() {
   const timeline = [
     { year: "2024", role: "Web Development Intern", org: "eShuri Ltd", type: "work", bullets: ["Gained hands-on experience in frontend and backend development", "Used HTML, Tailwind CSS, JavaScript, PHP, and MySQL"] },
@@ -49,9 +50,9 @@ export default function About() {
             {/* Socials */}
             <div className="flex gap-3 flex-wrap mt-8">
               {[
-                { icon: "🐙", label: "GitHub", href: "https://github.com/UmChristelle" },
-                { icon: "💼", label: "LinkedIn", href: "https://www.linkedin.com/in/umutoni-christella-259961241/" },
-                { icon: "✉️", label: "Email", href: "mailto:umutonichristella17@gmail.com" },
+                { icon: <FaGithub />, label: "GitHub", href: "https://github.com/UmChristelle" },
+                { icon: <FaLinkedin />, label: "LinkedIn", href: "https://www.linkedin.com/in/umutoni-christella-259961241/" },
+                { icon: <FaEnvelope />, label: "Email", href: "mailto:umutonichristella17@gmail.com" },
               ].map((s) => (
                 <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer"
                   className="flex items-center gap-2 px-4 py-2 rounded-xl border border-[#1e2d3d] text-slate-400 text-xs font-semibold font-mono transition-all duration-200 hover:border-emerald-500/40 hover:text-emerald-400">
