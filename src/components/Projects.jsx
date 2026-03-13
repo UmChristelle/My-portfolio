@@ -1,11 +1,12 @@
 import { useState } from "react";
+import { FaCheckSquare, FaShoppingBag, FaCloudSun, FaServer, FaBrain, FaExternalLinkAlt, FaGithub } from "react-icons/fa";
 
 const PROJECTS = [
-  { id: 1, num: "01", title: "TaskFlow", tag: "Productivity App", year: "2024", desc: "A full-stack task management app with real-time collaboration, drag-and-drop boards, and team workspaces. Built with React, Node.js, and PostgreSQL.", tech: ["React", "Node.js", "PostgreSQL", "Socket.io", "Tailwind"], accent: "#10b981", emoji: "✅", link: "#", github: "https://github.com/UmChristelle", stats: ["Real-time sync", "Team boards", "Drag & drop"] },
-  { id: 2, num: "02", title: "ShopNest", tag: "E-Commerce", year: "2024", desc: "A fully functional e-commerce platform with product listings, cart management, Stripe payments, and an admin dashboard.", tech: ["React", "Node.js", "PostgreSQL", "Stripe", "AWS S3"], accent: "#8b5cf6", emoji: "🛍️", link: "#", github: "https://github.com/UmChristelle", stats: ["Stripe payments", "Admin panel", "AWS hosting"] },
-  { id: 3, num: "03", title: "WeatherNow", tag: "Weather App", year: "2023", desc: "A beautiful weather dashboard with 7-day forecasts, location search, and animated weather icons.", tech: ["React", "OpenWeather API", "CSS Animations", "Vite"], accent: "#f59e0b", emoji: "🌤️", link: "#", github: "https://github.com/UmChristelle", stats: ["7-day forecast", "Location search", "Animated UI"] },
-  { id: 4, num: "04", title: "DevBlog API", tag: "REST API", year: "2023", desc: "A RESTful blog API with JWT authentication, role-based access, pagination, and full CRUD for posts, tags, and comments.", tech: ["Node.js", "Express", "PostgreSQL", "JWT", "Jest"], accent: "#ec4899", emoji: "📡", link: "#", github: "https://github.com/UmChristelle", stats: ["JWT auth", "Role-based", "80% test coverage"] },
-  { id: 5, num: "05", title: "AI Study Helper", tag: "AI Tool", year: "2023", desc: "An AI-powered study assistant that summarizes notes, generates quiz questions, and tracks learning progress using Python and NLP.", tech: ["Python", "NLP", "Flask", "React", "PostgreSQL"], accent: "#06b6d4", emoji: "🧠", link: "#", github: "https://github.com/UmChristelle", stats: ["NLP powered", "Quiz generator", "Progress tracking"] },
+  { id: 1, num: "01", title: "TaskFlow", tag: "Productivity App", year: "2024", desc: "A full-stack task management app with real-time collaboration, drag-and-drop boards, and team workspaces. Built with React, Node.js, and PostgreSQL.", tech: ["React", "Node.js", "PostgreSQL", "Socket.io", "Tailwind"], accent: "#10b981", icon: <FaCheckSquare />, link: "#", github: "https://github.com/UmChristelle", stats: ["Real-time sync", "Team boards", "Drag & drop"] },
+  { id: 2, num: "02", title: "ShopNest", tag: "E-Commerce", year: "2024", desc: "A fully functional e-commerce platform with product listings, cart management, Stripe payments, and an admin dashboard.", tech: ["React", "Node.js", "PostgreSQL", "Stripe", "AWS S3"], accent: "#8b5cf6", icon: <FaShoppingBag />, link: "#", github: "https://github.com/UmChristelle", stats: ["Stripe payments", "Admin panel", "AWS hosting"] },
+  { id: 3, num: "03", title: "WeatherNow", tag: "Weather App", year: "2023", desc: "A beautiful weather dashboard with 7-day forecasts, location search, and animated weather icons.", tech: ["React", "OpenWeather API", "CSS Animations", "Vite"], accent: "#f59e0b", icon: <FaCloudSun />, link: "#", github: "https://github.com/UmChristelle", stats: ["7-day forecast", "Location search", "Animated UI"] },
+  { id: 4, num: "04", title: "DevBlog API", tag: "REST API", year: "2023", desc: "A RESTful blog API with JWT authentication, role-based access, pagination, and full CRUD for posts, tags, and comments.", tech: ["Node.js", "Express", "PostgreSQL", "JWT", "Jest"], accent: "#ec4899", icon: <FaServer />, link: "#", github: "https://github.com/UmChristelle", stats: ["JWT auth", "Role-based", "80% test coverage"] },
+  { id: 5, num: "05", title: "AI Study Helper", tag: "AI Tool", year: "2023", desc: "An AI-powered study assistant that summarizes notes, generates quiz questions, and tracks learning progress using Python and NLP.", tech: ["Python", "NLP", "Flask", "React", "PostgreSQL"], accent: "#06b6d4", icon: <FaBrain />, link: "#", github: "https://github.com/UmChristelle", stats: ["NLP powered", "Quiz generator", "Progress tracking"] },
 ];
 
 function ProjectCard({ p, idx, list }) {
@@ -14,7 +15,7 @@ function ProjectCard({ p, idx, list }) {
     <div onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
       className="reveal flex items-start gap-5 p-5 rounded-2xl border transition-all duration-400 cursor-pointer"
       style={{ borderColor: hov ? "#334155" : "#1e2d3d", background: hov ? "rgba(16,185,129,0.03)" : "rgba(10,22,40,0.5)", transform: hov ? "translateX(6px)" : "none", boxShadow: hov ? `0 8px 30px ${p.accent}15` : "none" }}>
-      <span className="text-2xl shrink-0">{p.emoji}</span>
+      <span className="text-2xl shrink-0 w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: `${p.accent}15`, color: p.accent }}>{p.icon}</span>
       <div className="flex-1 min-w-0">
         <div className="flex flex-wrap items-center gap-2 mb-2">
           <span className="text-sm font-bold text-slate-200">{p.title}</span>
@@ -27,10 +28,10 @@ function ProjectCard({ p, idx, list }) {
         </div>
       </div>
       <div className="flex gap-2 shrink-0">
-        {[["↗", p.link], ["GH", p.github]].map(([label, href]) => (
-          <a key={label} href={href} target="_blank" rel="noopener noreferrer"
+        {[[<FaExternalLinkAlt />, p.link], [<FaGithub />, p.github]].map(([icon, href], i) => (
+          <a key={i} href={href} target="_blank" rel="noopener noreferrer"
             className="w-8 h-8 rounded-lg border flex items-center justify-center text-xs font-bold transition-all duration-200"
-            style={{ borderColor: hov ? `${p.accent}55` : "#1e2d3d", color: hov ? p.accent : "#475569" }}>{label}</a>
+            style={{ borderColor: hov ? `${p.accent}55` : "#1e2d3d", color: hov ? p.accent : "#475569" }}>{icon}</a>
         ))}
       </div>
     </div>
@@ -45,14 +46,14 @@ function ProjectCard({ p, idx, list }) {
       <div className="p-6">
         <div className="flex justify-between items-start mb-5">
           <div className="flex items-center gap-3">
-            <span className="text-2xl">{p.emoji}</span>
+            <span className="text-2xl w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: `${p.accent}15`, color: p.accent }}>{p.icon}</span>
             <span className="text-[11px] font-mono text-slate-700">{p.num}</span>
           </div>
           <div className="flex gap-2">
-            {[["↗", p.link], ["GitHub", p.github]].map(([label, href]) => (
-              <a key={label} href={href} target="_blank" rel="noopener noreferrer"
-                className="px-2.5 py-1 rounded-lg text-[11px] font-bold border transition-all duration-200"
-                style={{ borderColor: hov ? `${p.accent}44` : "#1e293b", color: hov ? p.accent : "#475569" }}>{label}</a>
+            {[[<FaExternalLinkAlt />, p.link], [<FaGithub />, p.github]].map(([icon, href], i) => (
+              <a key={i} href={href} target="_blank" rel="noopener noreferrer"
+                className="px-2.5 py-1 rounded-lg text-[11px] font-bold border transition-all duration-200 flex items-center gap-1"
+                style={{ borderColor: hov ? `${p.accent}44` : "#1e293b", color: hov ? p.accent : "#475569" }}>{icon}</a>
             ))}
           </div>
         </div>
@@ -70,10 +71,10 @@ function ProjectCard({ p, idx, list }) {
   );
 }
 
-export default function Projects() {
+export default function Projects({ dark }) {
   const [view, setView] = useState("grid");
   return (
-    <section id="projects" className="py-28 px-6" style={{ background: "#080f1a" }}>
+    <section id="projects" className={`py-28 px-6 transition-colors duration-500 ${dark ? 'bg-[#080f1a]' : 'bg-white'}`}>
       <div className="max-w-6xl mx-auto">
         <div className="reveal flex items-end justify-between flex-wrap gap-4 mb-14">
           <div>

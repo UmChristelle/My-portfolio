@@ -1,5 +1,5 @@
-import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
-export default function About() {
+import { FaGithub, FaLinkedin, FaEnvelope, FaRobot, FaLightbulb, FaChartBar, FaRocket, FaBook, FaGraduationCap, FaBolt } from "react-icons/fa";
+export default function About({ dark }) {
   const timeline = [
     { year: "2024", role: "Web Development Intern", org: "eShuri Ltd", type: "work", bullets: ["Gained hands-on experience in frontend and backend development", "Used HTML, Tailwind CSS, JavaScript, PHP, and MySQL"] },
     { year: "2023", role: "AI for Software Engineering", org: "Power Learn Project (PLP)", type: "edu", bullets: ["Completed Python, databases, software & web development coursework", "Specialized in AI techniques applied to real-world solutions"] },
@@ -7,7 +7,7 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="py-28 px-6" style={{ background: "#060c14" }}>
+    <section id="about" className={`py-28 px-6 transition-colors duration-500 ${dark ? 'bg-[#060c14]' : 'bg-gray-50'}`}>
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="reveal mb-16">
@@ -22,7 +22,7 @@ export default function About() {
           {/* Bio */}
           <div className="reveal">
             {[
-              "I'm Christella Umutoni — a motivated Information Systems student at the University of Rwanda, Kigali, with hands-on experience in web development, databases, programming, and AI.",
+              "I'm Christella Umutoni,a motivated Information Systems student at the University of Rwanda, Kigali, with hands-on experience in web development, databases, programming, and AI.",
               "My journey started with an academic internship at eShuri Ltd where I built real frontend and backend features, followed by the Power Learn Project's AI for Software Engineering track where I deepened my Python and AI skills.",
               "I'm a quick learner and reliable team player with strong problem-solving skills. I'm actively looking for opportunities where I can grow, contribute, and build impactful digital products.",
             ].map((p, i) => (
@@ -33,12 +33,12 @@ export default function About() {
             <div className="mt-8 p-5 rounded-2xl border border-[#1e2d3d]" style={{ background: "rgba(10,22,40,0.5)" }}>
               <p className="text-xs font-bold tracking-widest uppercase text-slate-500 mb-4">Certifications</p>
               {[
-                { icon: "🤖", name: "AI Fundamentals", org: "Udacity" },
-                { icon: "💡", name: "AI for Software Engineering", org: "Power Learn Project" },
-                { icon: "📊", name: "Data Science", org: "Digital Talent Program – IHS" },
+                { icon: <FaRobot className="text-emerald-400" />, name: "AI Fundamentals", org: "Udacity" },
+                { icon: <FaLightbulb className="text-purple-400" />, name: "AI for Software Engineering", org: "Power Learn Project" },
+                { icon: <FaChartBar className="text-cyan-400" />, name: "Data Science", org: "Digital Talent Program – IHS" },
               ].map((c) => (
                 <div key={c.name} className="flex items-center gap-3 mb-3 last:mb-0">
-                  <span className="text-lg">{c.icon}</span>
+                  <span className="text-xl w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: "rgba(16,185,129,0.08)" }}>{c.icon}</span>
                   <div>
                     <div className="text-sm font-semibold text-slate-300">{c.name}</div>
                     <div className="text-xs text-slate-500">{c.org}</div>
@@ -95,13 +95,13 @@ export default function About() {
         {/* Metrics */}
         <div className="reveal mt-16 grid grid-cols-2 md:grid-cols-4 rounded-2xl overflow-hidden border border-[#1e2d3d]">
           {[
-            { n: "5+", l: "Projects Built", e: "🚀" },
-            { n: "2", l: "Years Learning", e: "📚" },
-            { n: "3", l: "Certifications", e: "🎓" },
-            { n: "4+", l: "Technologies", e: "⚡" },
+            { n: "5+", l: "Projects Built", icon: <FaRocket className="text-emerald-400" /> },
+            { n: "2", l: "Years Learning", icon: <FaBook className="text-purple-400" /> },
+            { n: "3", l: "Certifications", icon: <FaGraduationCap className="text-cyan-400" /> },
+            { n: "4+", l: "Technologies", icon: <FaBolt className="text-amber-400" /> },
           ].map((m, i) => (
             <div key={m.l} className="py-8 px-4 text-center" style={{ background: "rgba(10,22,40,0.5)", borderRight: i < 3 ? "1px solid #1e2d3d" : "none" }}>
-              <div className="text-2xl mb-2">{m.e}</div>
+              <div className="text-3xl mb-2 flex justify-center">{m.icon}</div>
               <div className="text-3xl font-black shimmer-text leading-none">{m.n}</div>
               <div className="text-xs text-slate-500 mt-2 tracking-wide">{m.l}</div>
             </div>

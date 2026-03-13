@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { FaSeedling } from "react-icons/fa";
 
 const SKILLS = [
   { name: "HTML & CSS", pct: 88, cat: "Frontend" },
@@ -43,13 +44,13 @@ function SkillBar({ name, pct }) {
   );
 }
 
-export default function Skills() {
+export default function Skills({ dark }) {
   const [tab, setTab] = useState("All");
   const cats = ["All", ...Array.from(new Set(SKILLS.map(s => s.cat)))];
   const visible = tab === "All" ? SKILLS : SKILLS.filter(s => s.cat === tab);
 
   return (
-    <section id="skills" className="py-28 px-6" style={{ background: "#060c14" }}>
+    <section id="skills" className={`py-28 px-6 transition-colors duration-500 ${dark ? 'bg-[#060c14]' : 'bg-gray-50'}`}>
       <div className="max-w-6xl mx-auto">
         <div className="reveal mb-12">
           <div className="flex items-center gap-3 mb-3">
@@ -91,7 +92,7 @@ export default function Skills() {
 
         {/* Growing banner */}
         <div className="reveal mt-6 p-5 rounded-2xl flex items-center gap-4 flex-wrap border" style={{ background: "linear-gradient(135deg,rgba(16,185,129,0.05),rgba(139,92,246,0.05))", borderColor: "rgba(16,185,129,0.15)" }}>
-          <span className="text-2xl">🌱</span>
+          <FaSeedling className="text-3xl text-emerald-400" />
           <div>
             <p className="text-sm font-bold text-slate-200 mb-1">Always Growing</p>
             <p className="text-xs text-slate-400 leading-relaxed">Currently deepening React & Node.js skills, exploring TypeScript, and building more AI-powered projects with Python.</p>

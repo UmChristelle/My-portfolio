@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { FaEnvelope, FaMapMarkerAlt, FaGithub, FaLinkedin, FaPhone } from "react-icons/fa";
+import { FaEnvelope, FaMapMarkerAlt, FaGithub, FaLinkedin, FaPhone, FaCheckCircle, FaRedo } from "react-icons/fa";
 
-export default function Contact() {
+export default function Contact({ dark }) {
   const [form, setForm] = useState({ name: "", email: "", msg: "" });
   const [sent, setSent] = useState(false);
 
   return (
-    <section id="contact" className="py-28 px-6" style={{ background: "#080f1a" }}>
+    <section id="contact" className={`py-28 px-6 transition-colors duration-500 ${dark ? 'bg-[#080f1a]' : 'bg-white'}`}>
       <div className="max-w-6xl mx-auto">
         <div className="reveal mb-6">
           <div className="flex items-center gap-3 mb-3">
@@ -23,32 +23,11 @@ export default function Contact() {
           {/* Info */}
           <div className="reveal flex flex-col gap-4">
             {[
-              {
-  icon: <FaEnvelope />,
-  label: "Email",
-  value: "umutonichristella17@gmail.com"
-},
-{
-  icon: <FaMapMarkerAlt />,
-  label: "Location",
-  value: "Kigali, Rwanda (Remote OK)"
-},
-{
-  icon: <FaGithub />,
-  label: "GitHub",
-  value: "github.com/UmChristelle"
-},
-{
-  icon: <FaLinkedin />,
-  label: "LinkedIn",
-  value: "umutoni-christella"
-},
-   {
-    icon: <FaPhone />,
-    label: "Phone",
-    value: "+250 785 313 081"
-   }
-
+              { icon: <FaEnvelope className="text-emerald-400" />, label: "Email", val: "umutonichristella17@gmail.com", href: "mailto:umutonichristella17@gmail.com" },
+              { icon: <FaMapMarkerAlt className="text-purple-400" />, label: "Location", val: "Kigali, Rwanda (Remote OK)", href: "#" },
+              { icon: <FaGithub className="text-slate-300" />, label: "GitHub", val: "github.com/UmChristelle", href: "https://github.com/UmChristelle" },
+              { icon: <FaLinkedin className="text-cyan-400" />, label: "LinkedIn", val: "umutoni-christella", href: "https://www.linkedin.com/in/umutoni-christella-259961241/" },
+              { icon: <FaPhone className="text-amber-400" />, label: "Phone", val: "+250 785 313 081", href: "tel:+250785313081" },
             ].map((c) => (
               <a key={c.label} href={c.href} target="_blank" rel="noopener noreferrer"
                 className="flex items-center gap-4 p-4 rounded-2xl border border-[#1e2d3d] transition-all duration-300 group"
@@ -58,7 +37,7 @@ export default function Contact() {
                 <span className="w-10 h-10 rounded-xl flex items-center justify-center text-lg shrink-0" style={{ background: "rgba(16,185,129,0.08)" }}>{c.icon}</span>
                 <div>
                   <div className="text-[10px] font-bold tracking-widest uppercase text-slate-500 mb-0.5">{c.label}</div>
-                  <div className="text-sm font-semibold text-slate-200">{c.value}</div>
+                  <div className="text-sm font-semibold text-slate-200">{c.val}</div>
                 </div>
               </a>
             ))}
@@ -77,13 +56,13 @@ export default function Contact() {
           <div className="reveal p-8 rounded-2xl border border-[#1e2d3d]" style={{ background: "#0a1628" }}>
             {sent ? (
               <div className="flex flex-col items-center justify-center h-full text-center gap-5 py-16">
-                <div className="text-5xl">🎉</div>
+                <FaCheckCircle className="text-6xl text-emerald-400" />
                 <h3 className="text-xl font-black text-slate-100">Message sent!</h3>
                 <p className="text-slate-400 text-sm leading-relaxed">Thank you for reaching out! I'll reply within 24 hours.</p>
                 <button onClick={() => { setSent(false); setForm({ name: "", email: "", msg: "" }); }}
-                  className="mt-2 px-6 py-2.5 rounded-xl text-sm font-bold text-emerald-400 border border-emerald-500/30 transition-all hover:bg-emerald-500/10"
+                  className="mt-2 px-6 py-2.5 rounded-xl text-sm font-bold text-emerald-400 border border-emerald-500/30 transition-all hover:bg-emerald-500/10 flex items-center gap-2"
                   style={{ background: "rgba(16,185,129,0.08)" }}>
-                  Send another ↺
+                  <FaRedo /> Send another
                 </button>
               </div>
             ) : (

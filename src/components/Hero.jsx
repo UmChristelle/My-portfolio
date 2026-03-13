@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { FaReact, FaNodeJs, FaDatabase, FaAws, FaCode } from "react-icons/fa";
 
 const ROLES = [
   "Full Stack Developer",
@@ -25,10 +26,10 @@ function useTypewriter(words) {
   return text;
 }
 
-export default function Hero() {
+export default function Hero({ dark }) {
   const typed = useTypewriter(ROLES);
   return (
-    <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-16">
+    <section id="hero" className={`min-h-screen flex items-center justify-center relative overflow-hidden pt-16 transition-colors duration-500 ${dark ? 'bg-[#060c14]' : 'bg-white'}`}>
       {/* Background */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: "radial-gradient(circle, #10b981 1px, transparent 1px)", backgroundSize: "40px 40px" }} />
@@ -96,17 +97,17 @@ export default function Hero() {
             </svg>
             <div className="morph absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-36 h-36 flex items-center justify-center text-5xl"
               style={{ background: "linear-gradient(135deg,rgba(16,185,129,0.1),rgba(139,92,246,0.07))", border: "1px solid rgba(16,185,129,0.2)" }}>
-              👩‍💻
+              <FaCode className="text-emerald-400" />
             </div>
             {[
-              { label: "React", pos: "top-0 left-1/2 -translate-x-1/2", color: "#61dafb" },
-              { label: "Node", pos: "bottom-4 left-0", color: "#68a063" },
-              { label: "SQL", pos: "top-[38%] -right-4", color: "#336791" },
-              { label: "AWS", pos: "bottom-4 right-0", color: "#ff9900" },
+              { label: "React", pos: "top-0 left-1/2 -translate-x-1/2", color: "#61dafb", icon: <FaReact /> },
+              { label: "Node", pos: "bottom-4 left-0", color: "#68a063", icon: <FaNodeJs /> },
+              { label: "SQL", pos: "top-[38%] -right-4", color: "#336791", icon: <FaDatabase /> },
+              { label: "AWS", pos: "bottom-4 right-0", color: "#ff9900", icon: <FaAws /> },
             ].map((b) => (
-              <div key={b.label} className={`absolute ${b.pos} px-2.5 py-1 rounded-lg text-[11px] font-bold font-mono`}
+              <div key={b.label} className={`absolute ${b.pos} px-2.5 py-1 rounded-lg text-[11px] font-bold font-mono flex items-center gap-1.5`}
                 style={{ background: "#0a1628", border: `1px solid ${b.color}55`, color: b.color, boxShadow: `0 4px 16px ${b.color}22` }}>
-                {b.label}
+                {b.icon} {b.label}
               </div>
             ))}
           </div>

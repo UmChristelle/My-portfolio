@@ -35,13 +35,13 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#060c14] dark:bg-[#060c14] text-slate-100 transition-colors duration-500">
+    <div className="min-h-screen bg-white dark:bg-[#060c14] text-black dark:text-slate-100 transition-colors duration-500">
       <Navbar dark={dark} setDark={setDark} />
-      <Hero />
-      <About />
-      <Projects />
-      <Skills />
-      <Contact />
+      <Hero dark={dark} />
+      <About dark={dark} />
+      <Projects dark={dark} />
+      <Skills dark={dark} />
+      <Contact dark={dark} />
 
       {/* Footer */}
       <footer className="py-8 px-6 border-t border-[#1e2d3d] text-center">

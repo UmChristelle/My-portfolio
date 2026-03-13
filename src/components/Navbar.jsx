@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { FaSun, FaMoon } from "react-icons/fa";
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -82,22 +83,26 @@ export default function Navbar({ dark, setDark }) {
         <div className="flex items-center gap-3">
           {/* Dark/Light Toggle */}
           <button
-            onClick={() => setDark(!dark)}
-            className="relative w-11 h-6 rounded-full border transition-all duration-300"
-            style={{
-              background: dark ? "rgba(16,185,129,0.1)" : "#e2e8f0",
-              borderColor: dark ? "rgba(16,185,129,0.3)" : "#cbd5e1",
-            }}
-          >
-            <span
-              className="absolute top-[3px] w-[18px] h-[18px] rounded-full flex items-center justify-center text-[10px] transition-all duration-300"
-              style={{
-                left: dark ? "23px" : "3px",
-                background: dark ? "#10b981" : "#94a3b8",
-              }}
-            >
-              {dark ? "🌙" : "☀️"}
-            </span>
+            onClick={() => {
+            setDark(!dark);
+            document.documentElement.classList.toggle("dark");
+           }}
+
+           className="relative w-11 h-6 rounded-full border transition-all duration-300"
+           style={{
+            background: dark ? "rgba(16,185,129,0.1)" : "#e2e8f0",
+            borderColor: dark ? "rgba(16,185,129,0.3)" : "#cbd5e1",
+           }}
+>
+             <span
+               className="absolute top-[3px] w-[18px] h-[18px] rounded-full flex items-center justify-center transition-all duration-300"
+               style={{
+                 left: dark ? "23px" : "3px",
+                 background: dark ? "#10b981" : "#94a3b8",
+                }}
+  >
+                {dark ? <FaMoon size={10} /> : <FaSun size={10} />}
+              </span>
           </button>
 
           {/* Resume button */}
