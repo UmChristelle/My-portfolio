@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { FaEnvelope, FaMapMarkerAlt, FaGithub, FaLinkedin, FaPhone } from "react-icons/fa";
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", msg: "" });
@@ -22,11 +23,32 @@ export default function Contact() {
           {/* Info */}
           <div className="reveal flex flex-col gap-4">
             {[
-              { icon: "📧", label: "Email", val: "umutonichristella17@gmail.com", href: "mailto:umutonichristella17@gmail.com" },
-              { icon: "📍", label: "Location", val: "Kigali, Rwanda (Remote OK)", href: "#" },
-              { icon: "🐙", label: "GitHub", val: "github.com/UmChristelle", href: "https://github.com/UmChristelle" },
-              { icon: "💼", label: "LinkedIn", val: "umutoni-christella", href: "https://www.linkedin.com/in/umutoni-christella-259961241/" },
-              { icon: "📞", label: "Phone", val: "+250 785 313 081", href: "tel:+250785313081" },
+              {
+  icon: <FaEnvelope />,
+  label: "Email",
+  value: "umutonichristella17@gmail.com"
+},
+{
+  icon: <FaMapMarkerAlt />,
+  label: "Location",
+  value: "Kigali, Rwanda (Remote OK)"
+},
+{
+  icon: <FaGithub />,
+  label: "GitHub",
+  value: "github.com/UmChristelle"
+},
+{
+  icon: <FaLinkedin />,
+  label: "LinkedIn",
+  value: "umutoni-christella"
+},
+   {
+    icon: <FaPhone />,
+    label: "Phone",
+    value: "+250 785 313 081"
+   }
+
             ].map((c) => (
               <a key={c.label} href={c.href} target="_blank" rel="noopener noreferrer"
                 className="flex items-center gap-4 p-4 rounded-2xl border border-[#1e2d3d] transition-all duration-300 group"
@@ -36,7 +58,7 @@ export default function Contact() {
                 <span className="w-10 h-10 rounded-xl flex items-center justify-center text-lg shrink-0" style={{ background: "rgba(16,185,129,0.08)" }}>{c.icon}</span>
                 <div>
                   <div className="text-[10px] font-bold tracking-widest uppercase text-slate-500 mb-0.5">{c.label}</div>
-                  <div className="text-sm font-semibold text-slate-200">{c.val}</div>
+                  <div className="text-sm font-semibold text-slate-200">{c.value}</div>
                 </div>
               </a>
             ))}
