@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { ArrowDown, Briefcase, BookOpen, Award } from "lucide-react";
-import heroImage from "../assets/hero.png";
 
 const ROLES = [
   "Full Stack Developer",
@@ -158,30 +157,30 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* ── Right — Photo graphic ── */}
+        {/* ── Right — Profile Photo ── */}
         <div className="hidden lg:flex justify-center">
           <div className="float relative w-64 h-64">
-            {/* Outer ring */}
+            {/* Outer spinning ring */}
             <svg className="spin-slow absolute inset-0 w-full h-full" viewBox="0 0 260 260">
               <circle cx="130" cy="130" r="122" fill="none" stroke="rgba(16,185,129,0.18)" strokeWidth="1" strokeDasharray="6 16" />
             </svg>
-            {/* Inner ring */}
+            {/* Inner spinning ring */}
             <svg className="spin-reverse absolute inset-8 w-[calc(100%-64px)] h-[calc(100%-64px)]" viewBox="0 0 200 200">
               <circle cx="100" cy="100" r="92" fill="none" stroke="rgba(139,92,246,0.18)" strokeWidth="1" strokeDasharray="3 10" />
             </svg>
 
-            {/* Profile photo in morph blob */}
+            {/* Profile photo */}
             <div
-              className="morph absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-36 h-36 overflow-hidden"
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-44 h-44 rounded-full overflow-hidden"
               style={{
-                border: "2px solid rgba(16,185,129,0.3)",
-                boxShadow: "0 0 40px rgba(16,185,129,0.15)",
+                border: "3px solid rgba(16,185,129,0.45)",
+                boxShadow: "0 0 0 6px rgba(16,185,129,0.08), 0 0 50px rgba(16,185,129,0.2)",
               }}
             >
               <img
-                src={heroImage}
+                src="/christella's profile.jpeg"
                 alt="Christella Umutoni"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-top"
               />
             </div>
 
