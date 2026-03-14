@@ -9,50 +9,61 @@ import Contact from "./components/Contact";
 export default function App() {
   const [dark, setDark] = useState(true);
 
+  // Apply dark/light class and persist preference
   useEffect(() => {
+    const root = document.documentElement;
     if (dark) {
-      document.documentElement.classList.add("dark");
+      root.classList.add("dark");
     } else {
-      document.documentElement.classList.remove("dark");
+      root.classList.remove("dark");
     }
+    localStorage.setItem("christella-theme", dark ? "dark" : "light");
   }, [dark]);
 
-  // Reveal on scroll
+  // Read saved preference on first load
+  useEffect(() => {
+    const saved = localStorage.getItem("christella-theme");
+    if (saved === "light") setDark(false);
+  }, []);
+
+  // Scroll reveal
   useEffect(() => {
     const reveals = document.querySelectorAll(".reveal");
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-          }
+          if (entry.isIntersecting) entry.target.classList.add("visible");
         });
       },
-      { threshold: 0.15 }
+      { threshold: 0.12 }
     );
     reveals.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, []);
 
   return (
-    <div className="min-h-screen bg-white dark:bg-[#060c14] text-black dark:text-slate-100 transition-colors duration-500">
+    <div
+      className="min-h-screen transition-colors duration-500"
+      style={{ background: "var(--bg-primary)", color: "var(--text-primary)" }}
+    >
       <Navbar dark={dark} setDark={setDark} />
-      <Hero dark={dark} />
-      <About dark={dark} />
-      <Projects dark={dark} />
-      <Skills dark={dark} />
-      <Contact dark={dark} />
+      <Hero />
+      <About />
+      <Projects />
+      <Skills />
+      <Contact />
 
-      {/* Footer */}
-      <footer className="py-8 px-6 border-t border-[#1e2d3d] text-center">
-        <p className="text-sm text-slate-500">
-          Crafted with 💚 by{" "}
-          <span className="font-bold shimmer-text">
-            Christella Umutoni
-          </span>{" "}
+      <footer
+        className="py-8 px-6 text-center"
+        style={{ borderTop: "1px solid var(--border)" }}
+      >
+        <p className="text-sm" style={{ color: "var(--text-muted)" }}>
+          Crafted with{" "}
+          <span style={{ color: "var(--accent)" }}>♥</span> by{" "}
+          <span className="font-bold shimmer-text">Christella Umutoni</span>{" "}
           · {new Date().getFullYear()}
         </p>
-        <p className="text-xs text-[#1e293b] mt-1 font-mono">
+        <p className="text-xs mt-1 font-mono" style={{ color: "var(--text-faint)" }}>
           React · Tailwind CSS · Vite
         </p>
       </footer>
